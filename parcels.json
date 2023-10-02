@@ -20,6 +20,7 @@
       "type": "line",
       "source": "gg-source",
       "source-layer": "city.parcels",
+      "minzoom": 14,
       "paint": {"line-color": "rgba(165, 165, 165, 1)", "line-width": 1.5}
     },
     {

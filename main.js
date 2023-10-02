@@ -4,21 +4,38 @@ import Layer from 'ol/layer/Layer.js';
 import Map from 'ol/Map.js';
 import Source from 'ol/source/Source.js';
 import VectorSource from 'ol/source/Vector.js';
+import VectorLayer from 'ol/layer/Vector.js';
 import View from 'ol/View.js';
 import {fromLonLat, toLonLat} from 'ol/proj.js';
 import {MapboxVectorLayer, getLayer, apply, applyStyle, getLayers, renderTransparent, getSource} from 'ol-mapbox-style';
 import {VectorTile} from 'ol/layer.js';
 import LayerGroup from 'ol/layer/Group';
-import Select from 'ol/interaction/Select.js';
-import {altKeyOnly, click, pointerMove} from 'ol/events/condition.js';
+import TileLayer from 'ol/layer/Tile.js';
+import XYZ from 'ol/source/XYZ.js';
+import {Fill, Stroke, Style} from 'ol/style.js';
+import {toFeature} from 'ol/render/Feature';
 
 
+const selectedPolygon = new Style({
+  stroke: new Stroke({
+    color: 'rgba(200,20,20,0.8)',
+    width: 5,
+  }),
+  fill: new Fill({
+    color: 'rgba(200,20,20,0.4)',
+  }),
+});
+
+const selectOverlay = new VectorLayer({
+  source: new VectorSource(),
+  style: selectedPolygon,
+});
 
 const center = [-117.940869, 33.777326];
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZ2djaXR5IiwiYSI6ImNqNXpjM3czcjA4djIzMm4wOWQ0YjExMzcifQ.PeDOEiLNe7AkmhSa9ZK3aQ';
 const mbMap = new mapboxgl.Map({
-  style: 'mapbox://styles/ggcity/ckfo8an0k02ay19p10zg06oat',
+  style: 'https://ggcity.org/tileserver/styles/standard/style.json',
   attributionControl: false,
   boxZoom: false,
   center: center,
@@ -93,7 +110,7 @@ const map = new Map({
     center: fromLonLat(center),
     zoom: 12,
   }),
-  layers: [mbLayer, parcels],
+  layers: [mbLayer, parcels, selectOverlay],
 });
 
 apply(parcels, '/parcels.json')
@@ -103,17 +120,27 @@ apply(parcels, '/parcels.json')
 
   });
 
-
+let selectedFeatures = [];
 map.on('click', event => {
-  console.log('layers', getLayers(parcels, 'gg-source'));
-  console.log('layer', getLayer(parcels, 'parcels'));
-  console.log('features', map.getFeaturesAtPixel(event.pixel));
+  map.getFeaturesAtPixel(event.pixel).forEach((feature) => {
+    selectedFeatures.push(feature);
+    selectOverlay.getSource().clear();
+
+    selectedFeatures.forEach(sl => {
+      selectOverlay.getSource().addFeature(toFeature(sl));
+    });
+  })
 })
 
-const selectInteraction = new Select({condition: click, layers: (layer) => true});
-map.addInteraction(selectInteraction);
-selectInteraction.on('select', event => {
-  console.log('select event', event);
-});
+function basemap () {
+  const nearmap = new TileLayer({
+    source: new XYZ({
+      url: 'https://api.nearmap.com/tiles/v3/Vert/{z}/{x}/{y}.img?apikey=NWZiMjVjZGItZWJiYi00OTE2LTgyMjMtNTNiNGVkZDA0MGY2'
+    }),
+  });
 
-console.log(selectInteraction)
+  map.getLayers().insertAt(1, nearmap);
+  map.removeLayer(mbLayer);
+}
+
+// setTimeout(basemap, 5000);
