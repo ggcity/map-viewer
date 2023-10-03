@@ -117,7 +117,6 @@ apply(parcels, '/parcels.json')
   .then((eh) => {
     console.log(eh);
     console.log('source', getSource(parcels, 'gg-source'))
-
   });
 
 let selectedFeatures = [];
@@ -133,14 +132,11 @@ map.on('click', event => {
 })
 
 function basemap () {
-  const nearmap = new TileLayer({
-    source: new XYZ({
-      url: 'https://api.nearmap.com/tiles/v3/Vert/{z}/{x}/{y}.img?apikey=NWZiMjVjZGItZWJiYi00OTE2LTgyMjMtNTNiNGVkZDA0MGY2'
-    }),
-  });
+  const nearmap = new LayerGroup();
+  apply(nearmap, '/nearmap.json')
 
   map.getLayers().insertAt(1, nearmap);
   map.removeLayer(mbLayer);
 }
 
-// setTimeout(basemap, 5000);
+setTimeout(basemap, 5000);
