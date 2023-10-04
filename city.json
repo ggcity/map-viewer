@@ -1,0 +1,164 @@
+{
+  "version": 8,
+  "name": "Empty Style",
+  "metadata": {"maputnik:renderer": "mbgljs"},
+  "sources": {
+    "parcels": {
+      "type": "geojson",
+      "data": "https://ggcity.org/geoserver/gis/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=gis%3Acity.parcels&outputFormat=application%2Fjson&srsName=EPSG:4326"
+    },
+    "boundaries": {
+      "type": "geojson",
+      "data": "https://ggcity.org/geoserver/gis/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=gis%3Acity.boundary&outputFormat=application%2Fjson&srsName=EPSG:4326"
+    },
+    "addresses": {
+      "type": "geojson",
+      "data": "https://ggcity.org/geoserver/gis/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=gis%3Acity.addresses&outputFormat=application%2Fjson&srsName=EPSG:4326"
+    },
+    "council-districts": {
+      "type": "geojson",
+      "data": "https://ggcity.org/geoserver/gis/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=gis%3Acity.council_districts&outputFormat=application%2Fjson&srsName=EPSG:4326"
+    }
+  },
+  "sprite": "",
+  "glyphs": "https://ggcity.org/tileserver/fonts/{fontstack}/{range}.pbf",
+  "layers": [
+    {
+      "id": "boundary",
+      "type": "line",
+      "source": "boundaries",
+      "paint": {
+        "line-color": "rgba(255, 0, 0, 1)",
+        "line-opacity": 1,
+        "line-width": 5
+      }
+    },
+    {
+      "id": "parcels-lines",
+      "type": "line",
+      "source": "parcels",
+      "minzoom": 16,
+      "layout": {"visibility": "none"},
+      "paint": {
+        "line-color": "rgba(137, 137, 137, 1)",
+        "line-opacity": 1,
+        "line-width": 2
+      }
+    },
+    {
+      "id": "parcels-polygons",
+      "type": "fill",
+      "source": "parcels",
+      "minzoom": 16,
+      "paint": {"fill-opacity": 0}
+    },
+    {
+      "id": "addresses",
+      "type": "circle",
+      "source": "addresses",
+      "minzoom": 16,
+      "paint": {
+        "circle-radius": {"stops": [[18, 3], [19, 7]]},
+        "circle-color": "rgba(236, 152, 68, 1)"
+      }
+    },
+    {
+      "id": "addresses-label",
+      "type": "symbol",
+      "source": "addresses",
+      "minzoom": 17,
+      "filter": ["all", ["!=", ["typeof", ["get", "unit"]], "string"]],
+      "layout": {
+        "text-field": "{number}",
+        "visibility": "visible",
+        "text-font": ["Open Sans Regular"],
+        "text-offset": [0, -1],
+        "text-size": {"stops": [[18, 12], [19, 14]]},
+        "text-allow-overlap": false,
+        "text-ignore-placement": false
+      },
+      "paint": {
+        "text-color": "rgba(0, 0, 0, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 1)",
+        "text-halo-width": 2,
+        "text-halo-blur": 1
+      }
+    },
+    {
+      "id": "addresses-label-units",
+      "type": "symbol",
+      "source": "addresses",
+      "minzoom": 17,
+      "filter": ["all", ["==", ["typeof", ["get", "unit"]], "string"]],
+      "layout": {
+        "text-field": "{unit_type} {unit}",
+        "visibility": "visible",
+        "text-font": ["Open Sans Regular"],
+        "text-offset": [0, -1],
+        "text-size": {"stops": [[18, 12], [19, 14]]},
+        "text-allow-overlap": false,
+        "text-ignore-placement": false
+      },
+      "paint": {
+        "text-color": "rgba(0, 0, 0, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 1)",
+        "text-halo-blur": 1,
+        "text-halo-width": 2
+      }
+    },
+    {
+      "id": "council-districts-polygons",
+      "type": "fill",
+      "source": "council-districts",
+      "layout": {"visibility": "none"},
+      "paint": {
+        "fill-outline-color": "rgba(104, 104, 104, 1)",
+        "fill-antialias": false,
+        "fill-color": [
+          "match",
+          ["get", "district"],
+          1,
+          "#f5c292",
+          2,
+          "#b2e0e6",
+          3,
+          "#afbbdf",
+          4,
+          "#d5eace",
+          5,
+          "#fef5a2",
+          6,
+          "#d0acd1",
+          "rgba(0,0,0,0)"
+        ],
+        "fill-opacity": 0.6
+      }
+    },
+    {
+      "id": "council-districts-label",
+      "type": "symbol",
+      "source": "council-districts",
+      "minzoom": 11,
+      "maxzoom": 14,
+      "layout": {
+        "text-field": "District {district}",
+        "text-font": ["Open Sans Bold"],
+        "text-size": 30,
+        "text-allow-overlap": false,
+        "text-ignore-placement": false,
+        "text-optional": false,
+        "symbol-placement": "point",
+        "symbol-avoid-edges": false,
+        "text-justify": "center",
+        "text-anchor": "center",
+        "visibility": "none"
+      },
+      "paint": {
+        "text-halo-width": 2,
+        "text-halo-blur": 0.75,
+        "text-halo-color": "rgba(255, 255, 255, 1)"
+      }
+    }
+  ],
+  "id": "6elbcnliv"
+}

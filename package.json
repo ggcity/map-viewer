@@ -1,14 +1,22 @@
 {
-  "name": "mapbox-vector-layer",
+  "name": "map-viewer",
+  "type": "module",
   "dependencies": {
     "ol": "8.1.0",
-    "ol-mapbox-style": "^11.0.1"
+    "ol-mapbox-style": "^11.0.1",
+    "idb-keyval": "^6.2.1"
   },
   "devDependencies": {
-    "vite": "^3.2.3"
+    "vite": "^3.2.3",
+    "vite-plugin-pwa": "^0.14.7",
+    "workbox-core": "^6.5.4",
+    "workbox-precaching": "^6.5.4",
+    "workbox-routing": "^6.5.4"
   },
   "scripts": {
-    "start": "vite",
-    "build": "vite build"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "emulators": "FIREBASE_DATABASE_EMULATOR_HOST='127.0.0.1:9000' FIREBASE_AUTH_EMULATOR_HOST='127.0.0.1:9099' firebase emulators:start"
   }
 }
