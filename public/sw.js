@@ -50,7 +50,7 @@ setDefaultHandler(new NetworkOnly());
 // Cache API JSON using Network-first strategy
 // This should allow some data to be shown without network
 const geoserverRoute = new Route(({url}) => {
-  return /^https:\/\/ggcity.org\/geoserver/.test(url.toString());
+  return /^https:\/\/ggcity.org\/geoserver\/.+\/ows/.test(url.toString());
 }, new StaleWhileRevalidate({
     cacheName: 'geoserver',
     plugins: [

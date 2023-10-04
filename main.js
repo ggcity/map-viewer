@@ -17,6 +17,7 @@ import { toFeature } from 'ol/render/Feature';
 import ImageLayer from 'ol/layer/Image';
 import ImageWMS from 'ol/source/ImageWMS.js';
 import legendSymbol from './js/lib/legend-symbol';
+import svgTags from './js/lib/legend-symbol/svgTags'
 
 window.addEventListener('load', () => {
   navigator.serviceWorker
@@ -116,11 +117,11 @@ renderTransparent(true);
 const city = new LayerGroup();
 
 const cd = new ImageLayer({
-  source: new ImageWMS({
-    url: 'https://ggcity.org/geoserver/gis/wms',
-    params: { 'LAYERS': 'gis:city.council_district_info' },
-    serverType: 'geoserver'
-  })
+  // source: new ImageWMS({
+  //   url: 'https://ggcity.org/geoserver/gis/wms',
+  //   params: { 'LAYERS': 'gis:city.council_district_info' },
+  //   serverType: 'geoserver'
+  // })
 })
 
 const map = new Map({
@@ -142,11 +143,10 @@ apply(city, '/city.json')
     const glStyle = eh.get('mapbox-style');
 
     glStyle.layers.forEach(layer => {
-      if (layer.id !== 'addresses') return;
       let tree = legendSymbol({ sprite: "", zoom: view.getZoom(), layer: layer });
       console.log('tree', tree);
       // console.log('element', asHtml(tree));
-      document.getElementById('legend').appendChild(asHtml(tree))
+      document.getElementById('legend').appendChild(createElement2(tree))
     })
   });
 
@@ -173,16 +173,16 @@ function basemap() {
 
 // setTimeout(basemap, 5000);
 
-// function attrReplace(attrs) {
-//   const out = {};
-//   Object.entries(attrs).forEach(([k, v]) => {
-//     k = k.replace(/-./g, (i) => {
-//       return i.slice(1).toUpperCase();
-//     });
-//     out[k] = v;
-//   });
-//   return out;
-// }
+function attrReplace(attrs) {
+  const out = {};
+  Object.entries(attrs).forEach(([k, v]) => {
+    k = k.replace(/-./g, (i) => {
+      return i.slice(1).toUpperCase();
+    });
+    out[k] = v;
+  });
+  return out;
+}
 
 function asHtml(tree) {
   if (!tree) return null;
@@ -193,33 +193,45 @@ function asHtml(tree) {
   );
 }
 
-function attrReplace(attributes) {
-  const replacedAttributes = {};
+// function attrReplace(attributes) {
+//   const replacedAttributes = {};
 
-  for (const [key, value] of Object.entries(attributes)) {
-    if (key === 'style' && typeof value === 'object') {
-      // If the attribute is 'style' and the value is an object, convert it to a string
-      let styleString = '';
-      for (const [styleKey, styleValue] of Object.entries(value)) {
-        styleString += `${styleKey}: ${styleValue};`;
-      }
-      replacedAttributes[key] = styleString;
-    } else {
-      // Otherwise, keep the attribute as is
-      replacedAttributes[key] = value;
-    }
-  }
+//   for (const [key, value] of Object.entries(attributes)) {
+//     if (key === 'style' && typeof value === 'object') {
+//       // If the attribute is 'style' and the value is an object, convert it to a string
+//       let styleString = '';
+//       for (const [styleKey, styleValue] of Object.entries(value)) {
+//         styleString += `${styleKey}: ${styleValue};`;
+//       }
+//       replacedAttributes[key] = styleString;
+//     } else {
+//       // Otherwise, keep the attribute as is
+//       replacedAttributes[key] = value;
+//     }
+//   }
 
-  return replacedAttributes;
-}
+//   return replacedAttributes;
+// }
 
 function createElement(tagName, attributes, children) {
-  const element = (tagName === 'svg') ? document.createElementNS("http://www.w3.org/2000/svg", tagName) : document.createElement(tagName);
+  let element;
+  if (['svg', 'circle', 'defs'].includes(tagName)) {
+    element = document.createElementNS("http://www.w3.org/2000/svg", tagName);
+  } else {
+    element = document.createElement(tagName);
+  }
 
   // Set attributes
   if (attributes) {
     for (const [key, value] of Object.entries(attributes)) {
-      element.setAttribute(key, value);
+      if (typeof value === 'object') {
+        // If the attribute value is an object (e.g., style), handle it accordingly
+        for (const [styleKey, styleValue] of Object.entries(value)) {
+          element.style[styleKey] = styleValue;
+        }
+      } else {
+        element.setAttribute(key, value);
+      }
     }
   }
 
@@ -239,12 +251,19 @@ function createElement(tagName, attributes, children) {
 
 function createElement2(elementData) {
   const { element, attributes, children } = elementData;
-  const svgElement = document.createElementNS("http://www.w3.org/2000/svg", element);
+  //const svgElement = document.createElementNS("http://www.w3.org/2000/svg", element);
+  let svgElement;
+  if (svgTags.includes(element)) {
+    svgElement = document.createElementNS("http://www.w3.org/2000/svg", element);
+  } else {
+    svgElement = document.createElement(element);
+  }
+
 
   // Set attributes
   if (attributes) {
     for (const [key, value] of Object.entries(attributes)) {
-      if (typeof value === 'object') {
+      if (value && typeof value === 'object') {
         // If the attribute value is an object (e.g., style), handle it accordingly
         for (const [styleKey, styleValue] of Object.entries(value)) {
           svgElement.style[styleKey] = styleValue;
