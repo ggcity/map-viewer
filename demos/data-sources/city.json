@@ -7,44 +7,22 @@
       "type": "geojson",
       "data": "https://ggcity.org/geoserver/gis/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=gis%3Acity.parcels&outputFormat=application%2Fjson&srsName=EPSG:4326"
     },
-    "boundaries": {
-      "type": "geojson",
-      "data": "https://ggcity.org/geoserver/gis/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=gis%3Acity.boundary&outputFormat=application%2Fjson&srsName=EPSG:4326"
-    },
-    "addresses": {
-      "type": "geojson",
-      "data": "https://ggcity.org/geoserver/gis/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=gis%3Acity.addresses&outputFormat=application%2Fjson&srsName=EPSG:4326"
-    },
     "council-districts": {
       "type": "geojson",
       "data": "https://ggcity.org/geoserver/gis/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=gis%3Acity.council_districts&outputFormat=application%2Fjson&srsName=EPSG:4326"
+    },
+    "vector-source": {
+      "type": "vector",
+      "tiles": [
+        "https://ggcity.org/geoserver/gwc/service/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=gis:city&TILEMATRIXSET=EPSG:900913&TILEMATRIX=EPSG:900913:{z}&FORMAT=application/vnd.mapbox-vector-tile&TILECOL={x}&TILEROW={y}&srsName=EPSG:4326"
+      ],
+      "minZoom": 0,
+      "maxZoom": 14
     }
   },
   "sprite": "",
   "glyphs": "https://ggcity.org/tileserver/fonts/{fontstack}/{range}.pbf",
   "layers": [
-    {
-      "id": "boundary",
-      "type": "line",
-      "source": "boundaries",
-      "paint": {
-        "line-color": "rgba(255, 0, 0, 1)",
-        "line-opacity": 1,
-        "line-width": 5
-      }
-    },
-    {
-      "id": "parcels-lines",
-      "type": "line",
-      "source": "parcels",
-      "minzoom": 16,
-      "layout": {"visibility": "none"},
-      "paint": {
-        "line-color": "rgba(137, 137, 137, 1)",
-        "line-opacity": 1,
-        "line-width": 2
-      }
-    },
     {
       "id": "parcels-polygons",
       "type": "fill",
@@ -55,7 +33,8 @@
     {
       "id": "addresses",
       "type": "circle",
-      "source": "addresses",
+      "source": "vector-source",
+      "source-layer": "city.addresses",
       "minzoom": 16,
       "paint": {
         "circle-radius": {"stops": [[18, 3], [19, 7]]},
@@ -65,7 +44,8 @@
     {
       "id": "addresses-label",
       "type": "symbol",
-      "source": "addresses",
+      "source": "vector-source",
+      "source-layer": "city.addresses",
       "minzoom": 17,
       "filter": ["all", ["!=", ["typeof", ["get", "unit"]], "string"]],
       "layout": {
@@ -87,7 +67,8 @@
     {
       "id": "addresses-label-units",
       "type": "symbol",
-      "source": "addresses",
+      "source": "vector-source",
+      "source-layer": "city.addresses",
       "minzoom": 17,
       "filter": ["all", ["==", ["typeof", ["get", "unit"]], "string"]],
       "layout": {

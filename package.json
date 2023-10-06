@@ -1,22 +1,32 @@
 {
-  "name": "map-viewer",
+  "name": "@ggcity/map-viewer",
   "type": "module",
   "dependencies": {
+    "@material/drawer": "^14.0.0",
+    "@material/icon-button": "^14.0.0",
+    "@material/list": "^14.0.0",
+    "@material/ripple": "^14.0.0",
+    "@material/top-app-bar": "^14.0.0",
     "idb-keyval": "^6.2.1",
+    "mapbox-gl": "^2.15.0",
     "ol": "8.1.0",
     "ol-mapbox-style": "^11.0.1"
   },
   "devDependencies": {
-    "vite": "^3.2.3",
-    "vite-plugin-pwa": "^0.14.7",
-    "workbox-core": "^6.5.4",
-    "workbox-precaching": "^6.5.4",
-    "workbox-routing": "^6.5.4"
+    "sass": "^1.68.0",
+    "vite": "^3.2.3"
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "emulators": "FIREBASE_DATABASE_EMULATOR_HOST='127.0.0.1:9000' FIREBASE_AUTH_EMULATOR_HOST='127.0.0.1:9099' firebase emulators:start"
+    "build": "vite build"
+  },
+  "files": [
+    "dist"
+  ],
+  "module": "./dist/map-viwer.js",
+  "exports": {
+    ".": {
+      "import": "./dist/map-viewer.js"
+    }
   }
 }

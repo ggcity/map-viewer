@@ -24,3 +24,12 @@
     - geojson
     - xyz - probably not need too much
 - Vector layers loads matching name `.js` file for configuring popup templates
+- One basemap, one mbgl vector overlay layers, one wms/image overlay per map
+- Handlers
+
+## Handlers
+
+- Handlers are optional per maps. They come with their own MD context menu and specified tools under that context, something like:
+```html
+<select-handler data-table buffer public-notice>
+```

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport'>
+  <title>GG Map Viewer</title>
+  <style>
+    html,
+    body {
+      display: flex;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+    }
+
+    html {
+      height: 100%;
+    }
+  </style>
+  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+</head>
+
+<body>
+  <div id="legend"></div>
+  <map-viewer></map-viewer>
+  <script type="module">
+    import MapViewer from '../lib/main';
+    customElements.define('map-viewer', MapViewer);
+  </script>
+</body>
+
+</html>
