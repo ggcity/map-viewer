@@ -1,0 +1,16 @@
+.basemaps-ui {
+  @include ui-space;
+  display: flex;
+  gap: 10px;
+
+  .mdc-card {
+    width: 100px;
+  }
+
+  .mdc-card__media-content {
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 5px;
+    background-color: rgba(255,255,255,0.2);
+  }
+}

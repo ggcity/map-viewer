@@ -1,4 +1,5 @@
 title: General City Layers
+mapboxAccessToken: pk.eyJ1IjoiZ2djaXR5IiwiYSI6ImNqNXpjM3czcjA4djIzMm4wOWQ0YjExMzcifQ.PeDOEiLNe7AkmhSa9ZK3aQ
 
 mapOptions:
   minZoom: 11
@@ -11,12 +12,14 @@ mapOptions:
   attributionPrefix: City of Garden Grove
 
 widgets:
-  - toc
-  - print
-  - measure
-  - nearmap:
+  - Basemaps
+  - ToC
+  - Print
+  - Share
+  - Measure
+  - Nearmap:
       style: /demos/data-sources/nearmap.json
-  - select:
+  - Select:
       operations:
         - dataTable: true
         - bufferSelect:
@@ -24,17 +27,15 @@ widgets:
         - publicNotice:
             url: https://foo.com
 
-baseMaps:
+basemaps:
   - name: Default
     style: https://ggcity.org/tileserver/styles/standard/style.json
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    imagePreview: https://placehold.co/100
-    default: true
+    imagePreview: /demos/assets/default.png
   - name: OSM Bright
     style: mapbox://styles/ggcity/ckfo8an0k02ay19p10zg06oat
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    accessToken: pk.eyJ1IjoiZ2djaXR5IiwiYSI6ImNqNXpjM3czcjA4djIzMm4wOWQ0YjExMzcifQ.PeDOEiLNe7AkmhSa9ZK3aQ
-    imagePreview: https://placehold.co/100
+    imagePreview: /demos/assets/osm-bright.png
 
 vectorOverlay: /demos/data-sources/city.json
 

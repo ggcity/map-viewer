@@ -1,3 +1,15 @@
 @import "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import "./variables.scss";
+
+@mixin ui-space {
+  right: 10px !important;
+  top: 74px !important;
+  left: auto !important;
+  padding: 10px;
+}
+
+.ui-show {
+  opacity: 1 !important;
+  z-index: 24 !important;
+}
