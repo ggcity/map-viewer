@@ -2,12 +2,14 @@
   "name": "@ggcity/map-viewer",
   "type": "module",
   "dependencies": {
+    "@material/banner": "^14.0.0",
     "@material/drawer": "^14.0.0",
     "@material/icon-button": "^14.0.0",
     "@material/list": "^14.0.0",
     "@material/ripple": "^14.0.0",
     "@material/top-app-bar": "^14.0.0",
     "idb-keyval": "^6.2.1",
+    "js-yaml": "^4.1.0",
     "mapbox-gl": "^2.15.0",
     "ol": "8.1.0",
     "ol-mapbox-style": "^11.0.1"

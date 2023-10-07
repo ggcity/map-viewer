@@ -1,0 +1,45 @@
+title: General City Layers
+
+mapOptions:
+  minZoom: 11
+  maxZoom: 22
+  bounds:
+    - -118.019772
+    - 33.810159
+    - -117.920122
+    - 33.727172
+  attributionPrefix: City of Garden Grove
+
+widgets:
+  - toc
+  - print
+  - measure
+  - nearmap:
+      style: /demos/data-sources/nearmap.json
+  - select:
+      operations:
+        - dataTable: true
+        - bufferSelect:
+            selectOnly: parcels-polygons
+        - publicNotice:
+            url: https://foo.com
+
+baseMaps:
+  - name: Default
+    style: https://ggcity.org/tileserver/styles/standard/style.json
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    imagePreview: https://placehold.co/100
+    default: true
+  - name: OSM Bright
+    style: mapbox://styles/ggcity/ckfo8an0k02ay19p10zg06oat
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    accessToken: pk.eyJ1IjoiZ2djaXR5IiwiYSI6ImNqNXpjM3czcjA4djIzMm4wOWQ0YjExMzcifQ.PeDOEiLNe7AkmhSa9ZK3aQ
+    imagePreview: https://placehold.co/100
+
+vectorOverlay: /demos/data-sources/city.json
+
+imageOverlay:
+  url: https://ggcity.org/geoserver/gis/wms
+  serverType: geoserver
+  params:
+    layers: gis:city.council_district_info

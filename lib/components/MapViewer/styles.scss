@@ -1,0 +1,13 @@
+@import "../../common.scss";
+@import "https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/mapbox-gl/1.13.0/mapbox-gl.css";
+@import 'ol/ol.css';
+
+:host, main, div#map {
+  display: flex;
+  width: 100%
+}
+
+div#map {
+  width:100%;
+}
