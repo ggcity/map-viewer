@@ -30,11 +30,11 @@ widgets:
 basemaps:
   - name: Default
     style: https://ggcity.org/tileserver/styles/standard/style.json
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    attributions: '&copy; City of Garden Grove, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     imagePreview: /demos/assets/default.png
   - name: OSM Bright
     style: mapbox://styles/ggcity/ckfo8an0k02ay19p10zg06oat
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    attributions: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     imagePreview: /demos/assets/osm-bright.png
 
 vectorOverlay: /demos/data-sources/city.json
