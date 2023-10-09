@@ -12,6 +12,16 @@ mapOptions:
   attributionPrefix: City of Garden Grove
 
 widgets:
+  - Select:
+      customPopupTemplate: /demos/configs/city-popup.js
+      selectableLayers: 
+        - addresses
+      operations:
+        - dataTable: true
+        - bufferSelect:
+            selectOnly: parcels-polygons
+        - publicNotice:
+            url: https://foo.com
   - Basemaps
   - ToC
   - Print
@@ -19,13 +29,6 @@ widgets:
   - Measure
   - Nearmap:
       style: /demos/data-sources/nearmap.json
-  - Select:
-      operations:
-        - dataTable: true
-        - bufferSelect:
-            selectOnly: parcels-polygons
-        - publicNotice:
-            url: https://foo.com
 
 basemaps:
   - name: Default

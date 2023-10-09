@@ -3,6 +3,7 @@
 @import "https://cdnjs.cloudflare.com/ajax/libs/mapbox-gl/1.13.0/mapbox-gl.css";
 @import 'ol/ol.css';
 @import '../Basemaps/';
+@import '../Select/';
 
 :host, main, div#map {
   display: flex;
@@ -11,4 +12,8 @@
 
 div#map {
   width:100%;
+}
+
+.context-menu {
+  background-color: black;
 }

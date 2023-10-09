@@ -1,5 +1,5 @@
 @import "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css";
-@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+@import "https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0";
 @import "./variables.scss";
 
 @mixin ui-space {
@@ -12,10 +12,6 @@
 .ui-show {
   opacity: 1 !important;
   z-index: 24 !important;
-}
-
-.context-menu {
-  background-color: black;
 }
 
 .d-none {
