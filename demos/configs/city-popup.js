@@ -5,6 +5,6 @@ export default function (properties) {
     content.textContent = properties.pretty_address;
     return content;
   } else {
-    return document.createElement('div');
+    return JSON.stringify(properties);
   }
 }
