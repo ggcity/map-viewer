@@ -11,6 +11,7 @@
     "@material/ripple": "^14.0.0",
     "@material/tooltip": "^14.0.0",
     "@material/top-app-bar": "^14.0.0",
+    "@popperjs/core": "^2.11.8",
     "idb-keyval": "^6.2.1",
     "js-yaml": "^4.1.0",
     "mapbox-gl": "^2.15.0",
