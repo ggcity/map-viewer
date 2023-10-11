@@ -18,6 +18,7 @@ widgets:
         - addresses
       operations:
         - dataTable: true
+        - land: true
         - bufferSelect:
             selectOnly: parcels-polygons
         - publicNotice:

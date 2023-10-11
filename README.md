@@ -10,9 +10,10 @@
 
 - Application loads config file (JSON)
   - Title
-  - Access token
+  - Mapbox Access token
   - Optional tools (legend, data tables, buffer)
   - Center/extent/initial zoom/minmax zoom
+  - LAND data
   - Basemap (Mapbox)
   - Aerials
     - Nearmap
@@ -25,7 +26,9 @@
     - xyz - probably not need too much
 - Vector layers loads matching name `.js` file for configuring popup templates
 - One basemap, one mbgl vector overlay layers, one wms/image overlay per map
-- Handlers
+
+## Share
+- A map can have zero or many revokeable access tokens to allow sharing of internal maps to external entities.
 
 ## Handlers
 
