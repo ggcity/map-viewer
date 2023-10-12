@@ -14,8 +14,10 @@ mapOptions:
 widgets:
   - Select:
       customPopupTemplate: /demos/configs/city-popup.js
-      selectableLayers: 
+      includedLayers: 
         - addresses
+      excludedLayers:
+        - zoning
       operations:
         - dataTable: true
         - land: true
