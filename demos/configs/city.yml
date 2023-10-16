@@ -14,12 +14,12 @@ mapOptions:
 widgets:
   - Select:
       customPopupTemplate: /demos/configs/city-popup.js
-      includedLayers: 
-        - addresses
+      layers: 
+        city.addresses: 'Addresses'
+        parcels: 'Parcels'
       excludedLayers:
         - zoning
       operations:
-        - dataTable: true
         - land: true
         - bufferSelect:
             selectOnly: parcels-polygons

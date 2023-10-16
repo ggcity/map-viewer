@@ -9,9 +9,13 @@
 
 #select-popup .popup-controls {
   white-space: nowrap;
-  color: #777;
+  color: #999;
   margin-top: 10px;
   font-size: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   i.material-symbols-rounded {
     cursor: pointer;
@@ -36,7 +40,7 @@
   visibility: visible;
   content: '';
   transform: rotate(45deg);
-} 
+}
 
 #select-popup[data-popper-placement^='top']>#arrow {
   bottom: -4px;
