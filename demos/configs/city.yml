@@ -15,7 +15,7 @@ widgets:
   - Select:
       customPopupTemplate: /demos/configs/city-popup.js
       layers: 
-        city.addresses: 'Addresses'
+        city.public_addresses: 'Addresses'
         parcels: 'Parcels'
       excludedLayers:
         - zoning

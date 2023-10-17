@@ -5,8 +5,8 @@ export default function (properties) {
   content.style.textAlign = 'center';
 
   // Quacks like a duck
-  if (properties.pretty_address) {
-    content.textContent = properties.pretty_address;
+  if (properties.formatted_address) {
+    content.textContent = properties.formatted_address;
   } else if (properties.apn) {
     content.textContent = 'APN ' + properties.apn;
   }

@@ -34,7 +34,7 @@
       "id": "addresses",
       "type": "circle",
       "source": "vector-source",
-      "source-layer": "city.addresses",
+      "source-layer": "city.public_addresses",
       "minzoom": 16,
       "paint": {
         "circle-radius": {"stops": [[18, 3], [19, 7]]},
@@ -45,7 +45,7 @@
       "id": "addresses-label",
       "type": "symbol",
       "source": "vector-source",
-      "source-layer": "city.addresses",
+      "source-layer": "city.public_addresses",
       "minzoom": 17,
       "filter": ["all", ["!=", ["typeof", ["get", "unit"]], "string"]],
       "layout": {
@@ -68,7 +68,7 @@
       "id": "addresses-label-units",
       "type": "symbol",
       "source": "vector-source",
-      "source-layer": "city.addresses",
+      "source-layer": "city.public_addresses",
       "minzoom": 17,
       "filter": ["all", ["==", ["typeof", ["get", "unit"]], "string"]],
       "layout": {
