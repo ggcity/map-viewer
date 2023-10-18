@@ -84,16 +84,14 @@
   border-radius: 0 0 5px 5px;
   overflow-y: auto;
   overflow-x: hidden;
-  display: flex;
   gap: 10px;
   padding: 20px;
+  display: flex;
   flex-wrap: wrap;
-  align-items: stretch;
-  justify-content: space-around;
 }
 
 .data-space-table {
+  width: 100%;
   max-width: 100%;
-  max-height: 50%;
   overflow: auto;
 }
